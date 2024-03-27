@@ -52,7 +52,7 @@ namespace PlannerAppApi.Migrations
 
                     b.HasKey("EventId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Event");
                 });
 
             modelBuilder.Entity("PlannerAppApi.User", b =>

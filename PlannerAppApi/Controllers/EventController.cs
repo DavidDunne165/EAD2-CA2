@@ -20,21 +20,21 @@ namespace PlannerAppApi.Controllers
 
         // GET: api/Event
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
+        public async Task<ActionResult<IEnumerable<Event>>> GetEvent()
         {
-            if (_context.Events == null)
+            if (_context.Event == null)
             {
                 return NotFound();
             }
-            return await _context.Events.ToListAsync();
+            return await _context.Event.ToListAsync();
         }
 
         // GET: api/Event/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEvent(int id)
         {
-            var eventItem = await _context.Events.FindAsync(id);
-            if (eventItem == null || _context.Events == null)
+            var eventItem = await _context.Event.FindAsync(id);
+            if (eventItem == null || _context.Event == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace PlannerAppApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Event>> PostEvent(Event eventItem)
         {
-            if (_context.Events == null)
+            if (_context.Event == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Events' is null.");
+                return Problem("Entity set 'ApplicationDbContext.Event' is null.");
             }
-            _context.Events.Add(eventItem);
+            _context.Event.Add(eventItem);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetEvent), new { id = eventItem.EventId }, eventItem);
@@ -72,7 +72,7 @@ namespace PlannerAppApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Events.Any(e => e.EventId == id))
+                if (!_context.Event.Any(e => e.EventId == id))
                 {
                     return NotFound();
                 }
@@ -89,17 +89,17 @@ namespace PlannerAppApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
-            if (_context.Events == null)
+            if (_context.Event == null)
             {
                 return NotFound();
             }
-            var eventItem = await _context.Events.FindAsync(id);
+            var eventItem = await _context.Event.FindAsync(id);
             if (eventItem == null)
             {
                 return NotFound();
             }
 
-            _context.Events.Remove(eventItem);
+            _context.Event.Remove(eventItem);
             await _context.SaveChangesAsync();
 
             return NoContent();

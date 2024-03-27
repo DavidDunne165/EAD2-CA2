@@ -12,7 +12,7 @@ namespace PlannerAppApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Events",
+                name: "Event",
                 columns: table => new
                 {
                     EventId = table.Column<int>(type: "int", nullable: false)
@@ -25,7 +25,7 @@ namespace PlannerAppApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Events", x => x.EventId);
+                    table.PrimaryKey("PK_Event", x => x.EventId);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +46,7 @@ namespace PlannerAppApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Event");
 
             migrationBuilder.DropTable(
                 name: "Users");

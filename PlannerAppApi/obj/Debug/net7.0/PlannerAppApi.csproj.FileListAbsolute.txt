@@ -53,7 +53,6 @@
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.SqlServer.Server.dll
-/Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/System.Drawing.Common.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
@@ -98,7 +97,7 @@ C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Micros
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.OpenApi.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.SqlServer.Server.dll
-C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.Win32.SystemEvent.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Mono.TextTemplating.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -343,7 +342,7 @@ C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/ru/Mic
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvent.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
 C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
@@ -552,10 +551,11 @@ C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/obj/Debug/net7.0/Planne
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-/Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/shane/EAD2-CA2/PlannerAppApi/obj/Debug/net7.0/PlannerAppApi.RazorAssemblyInfo.cache
 /Users/shane/EAD2-CA2/PlannerAppApi/obj/Debug/net7.0/PlannerAppApi.RazorAssemblyInfo.cs
+/Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+/Users/shane/EAD2-CA2/PlannerAppApi/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
