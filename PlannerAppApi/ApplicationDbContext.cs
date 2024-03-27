@@ -4,13 +4,14 @@ namespace PlannerAppApi.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
         {
         }
 
-        // DbSet properties for your entities
+        // DbSets for your entities
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
     }
-
 }
+
