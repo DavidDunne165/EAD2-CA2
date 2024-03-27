@@ -29,7 +29,7 @@ namespace PlannerAppApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -38,7 +38,7 @@ namespace PlannerAppApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_User", x => x.UserId);
                 });
         }
 
@@ -49,7 +49,7 @@ namespace PlannerAppApi.Migrations
                 name: "Event");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

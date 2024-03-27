@@ -22,19 +22,19 @@ namespace PlannerAppApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            if (_context.Users == null)
+            if (_context.User == null)
             {
                 return NotFound();
             }
-            return await _context.Users.ToListAsync();
+            return await _context.User.ToListAsync();
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null || _context.Users == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null || _context.User == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace PlannerAppApi.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            if (_context.Users == null)
+            if (_context.User == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Users'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.User'  is null.");
             }
-            _context.Users.Add(user);
+            _context.User.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
@@ -72,7 +72,7 @@ namespace PlannerAppApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Users.Any(e => e.UserId == id))
+                if (!_context.User.Any(e => e.UserId == id))
                 {
                     return NotFound();
                 }
@@ -89,17 +89,17 @@ namespace PlannerAppApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Users == null)
+            if (_context.User == null)
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.User.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.User.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();

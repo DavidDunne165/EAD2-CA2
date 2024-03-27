@@ -10,7 +10,7 @@ namespace PlannerAppApi.Data
         }
 
         // DbSets for your entities
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Event> Event { get; set; }
     }
 }
