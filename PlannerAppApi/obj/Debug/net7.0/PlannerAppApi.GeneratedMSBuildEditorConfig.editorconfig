@@ -9,53 +9,53 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PlannerAppApi
 build_property.RootNamespace = PlannerAppApi
-build_property.ProjectDir = /Users/shane/EAD2-CA2/PlannerAppApi/
+build_property.ProjectDir = /Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/shane/EAD2-CA2/PlannerAppApi
+build_property.MSBuildProjectDirectory = /Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/Event/Create.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/Event/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXZlbnQvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/Event/Delete.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/Event/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXZlbnQvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/Event/Details.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/Event/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXZlbnQvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/Event/Edit.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/Event/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXZlbnQvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/Event/Index.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/Event/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXZlbnQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/User/Create.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/User/Delete.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/User/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/User/Details.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/User/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/User/Edit.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/shane/EAD2-CA2/PlannerAppApi/Views/User/Index.cshtml]
+[/Users/shane/College/EAD2/EAD2-CA2/PlannerAppApi/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
