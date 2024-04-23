@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.x'
-          include-prerelease: true
 
       - name: Build with dotnet
         run: dotnet build --configuration Release PlannerAppApi/PlannerAppApi.csproj
@@ -48,6 +47,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: .net-app
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D6B29A15FBD04AC388B216097F59291D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_35B26E8EE9CC425294EA70C91E2CE911 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A1B6F500AD0145BC8F4C0CC15F34CF6A }}
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -55,5 +61,5 @@ jobs:
         with:
           app-name: 'EAD2PlannerApp'
           slot-name: 'Production'
-          package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_191527599B3D4609B1FDCF6FD7D1E195 }}
+          package: .
