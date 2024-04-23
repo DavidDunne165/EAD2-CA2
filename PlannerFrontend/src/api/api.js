@@ -1,5 +1,5 @@
 // src/api/api.js
-const API_URL = 'http://your-backend-url.com'; // Replace with your actual API URL
+const API_URL = 'https://ead2plannerapp.azurewebsites.net';
 
 export const fetchApi = async (endpoint, method, body) => {
   const response = await fetch(`${API_URL}/${endpoint}`, {
