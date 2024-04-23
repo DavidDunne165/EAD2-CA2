@@ -12,8 +12,8 @@ function AppNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
-      {/* <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="EventCreation" component={EventCreationScreen} /> */}
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="EventCreation" component={EventCreationScreen} />
     </Stack.Navigator>
   );
 }
