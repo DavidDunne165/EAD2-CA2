@@ -9,55 +9,55 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PlannerAppApi
 build_property.RootNamespace = PlannerAppApi
-build_property.ProjectDir = c:\Users\David\Desktop\PlannerApp\EAD2-CA2\PlannerAppApi\
+build_property.ProjectDir = C:\Users\David\Desktop\PlannerApp\EAD2-CA2\PlannerAppApi\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\David\Desktop\PlannerApp\EAD2-CA2\PlannerAppApi
+build_property.MSBuildProjectDirectory = C:\Users\David\Desktop\PlannerApp\EAD2-CA2\PlannerAppApi
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Create.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Delete.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Details.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Edit.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Index.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Event/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Create.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Delete.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Details.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Edit.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Index.cshtml]
+[C:/Users/David/Desktop/PlannerApp/EAD2-CA2/PlannerAppApi/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
