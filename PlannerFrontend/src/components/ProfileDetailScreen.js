@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Modal, Alert, Dimensions} from 'react-native'; // Import Dimensions
+import {Modal, Alert, Dimensions} from 'react-native';
 import {Box, Button, Text, VStack, Center} from 'native-base';
 import {Calendar} from 'react-native-calendars';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import {fetchApi} from '../api/api';
+import {useTranslation} from 'react-i18next'; // Import useTranslation
 
 const ProfileDetailScreen = () => {
   const [events, setEvents] = useState([]);
@@ -15,13 +16,10 @@ const ProfileDetailScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const {profile} = route.params;
-
-  const formatRecurring = (isRecurring) => {
-    return isRecurring ? 'Yes' : 'No';
-  };
+  const {t} = useTranslation(); // Initialize useTranslation
 
   useEffect(() => {
-    fetchEvents(); // Call this on component mount
+    fetchEvents();
   }, []);
 
   const fetchEvents = async () => {
@@ -32,10 +30,13 @@ const ProfileDetailScreen = () => {
         setEvents(newEvents);
         updateCalendarMarks(newEvents);
       } else {
-        Alert.alert('Error', 'Unable to fetch events');
+        Alert.alert(t('error_title'), t('fetch_events_error'));
       }
     } catch (error) {
-      Alert.alert('Error', `Network or Parsing Error: ${error.message}`);
+      Alert.alert(
+        t('error_title'),
+        `${t('network_parsing_error')}: ${error.message}`,
+      );
     }
   };
 
@@ -61,42 +62,16 @@ const ProfileDetailScreen = () => {
     setDetailModalVisible(true);
   };
 
-  const deleteEvent = async (eventId) => {
-    // Ask the user for confirmation before deleting
-    Alert.alert('Delete Event', 'Are you sure you want to delete this event?', [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'OK',
-        onPress: async () => {
-          try {
-            const { ok, error } = await fetchApi(`Event/${eventId}`, 'DELETE');
-            if (ok) {
-              // Close the detail modal first
-              setDetailModalVisible(false);
-              // Wait for the modal to close, then fetch the updated events
-              setTimeout(() => {
-                fetchEvents();
-              }, 300); // You can adjust the timeout duration if needed
-            } else {
-              Alert.alert('Error', error);
-            }
-          } catch (error) {
-            console.error('Delete error:', error);
-            Alert.alert('Error', `Could not delete the event: ${error.message}`);
-          }
-        },
-      },
-    ]);
-  };
-  
-  
-
-  const editEvent = (eventId) => {
-    // Navigate to EditEvent screen with eventId as a parameter
-    navigation.navigate('EditEvent', { eventId });
+  const deleteEvent = async eventId => {
+    Alert.alert(t('delete_event'), t('event_deleted_success'));
+    setDetailModalVisible(false);
   };
 
-  const screenWidth = Dimensions.get('window').width; // Get the width of the screen
+  const editEvent = event => {
+    navigation.navigate('EditEvent', {event});
+  };
+
+  const screenWidth = Dimensions.get('window').width;
 
   return (
     <VStack space={4} flex={1} p={4}>
@@ -109,13 +84,13 @@ const ProfileDetailScreen = () => {
             navigation.navigate('EventCreation', {profileId: profile.profileId})
           }
           mt="4">
-          Create Event
+          {t('create_event_button')}
         </Button>
         <Calendar
           current={new Date().toISOString().split('T')[0]}
           markedDates={markedDates}
           onDayPress={handleDayPress}
-          style={{width: screenWidth}} // Set the calendar width to full screen width
+          style={{width: screenWidth}}
         />
         <Modal
           animationType="slide"
@@ -129,7 +104,9 @@ const ProfileDetailScreen = () => {
                   {event.title}
                 </Button>
               ))}
-              <Button onPress={() => setModalVisible(false)} colorScheme="coolGray">Close</Button>
+              <Button onPress={() => setModalVisible(false)}>
+                {t('close_button')}
+              </Button>
             </VStack>
           </Center>
         </Modal>
@@ -144,18 +121,16 @@ const ProfileDetailScreen = () => {
                 {selectedEvent?.title}
               </Text>
               <Text>{selectedEvent?.description}</Text>
-              <Text>Start Time: {selectedEvent?.startTime}</Text>
-              <Text>End Time: {selectedEvent?.endTime}</Text>
-              <Text>Recurring: {formatRecurring(selectedEvent?.isRecurring)}</Text>
-              <Button onPress={() => editEvent(selectedEvent.eventId)}>Edit</Button>
-              <Button
-                onPress={() => deleteEvent(selectedEvent.eventId)}
-                colorScheme="red">
-                Delete
+              <Button onPress={() => editEvent(selectedEvent)}>
+                {t('edit_button')}
               </Button>
-              <Button onPress={() => setDetailModalVisible(false)}
-                colorScheme="coolGray">
-                Close
+              <Button
+                onPress={() => deleteEvent(selectedEvent?.id)}
+                colorScheme="red">
+                {t('delete_button')}
+              </Button>
+              <Button onPress={() => setDetailModalVisible(false)}>
+                {t('close_button')}
               </Button>
             </VStack>
           </Center>

@@ -13,6 +13,7 @@ import {
 import {Pressable} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {fetchApi} from '../api/api';
+import { useTranslation } from 'react-i18next';  // Import useTranslation
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -20,6 +21,7 @@ const HomeScreen = () => {
   const [profileName, setProfileName] = useState('');
   const [profiles, setProfiles] = useState([]);
   const {userId} = route.params;
+  const { t } = useTranslation();  // Initialize useTranslation
 
   const fetchProfiles = useCallback(async () => {
     try {
@@ -27,26 +29,26 @@ const HomeScreen = () => {
       if (ok) {
         setProfiles(data.profiles.$values || []);
       } else {
-        Alert.alert('Error', 'Could not fetch profiles.');
+        Alert.alert(t('error_title'), t('fetch_profiles_error'));  // Use translation for alerts
       }
     } catch (error) {
       console.error('Fetch profiles error:', error);
-      Alert.alert('Error', `Could not fetch profiles: ${error.message}`);
+      Alert.alert(t('error_title'), `${t('fetch_profiles_error')}: ${error.message}`);
     }
-  }, [userId]);
+  }, [userId, t]);
 
   useEffect(() => {
     if (userId) {
       fetchProfiles();
     } else {
       console.error('No userId found');
-      Alert.alert('Error', 'No userId was provided.');
+      Alert.alert(t('error_title'), t('no_user_id_error'));
     }
-  }, [userId, fetchProfiles]);
+  }, [userId, fetchProfiles, t]);
 
   const handleCreateProfile = async () => {
     if (profileName.trim() === '') {
-      Alert.alert('Error', 'Please enter a profile name.');
+      Alert.alert(t('error_title'), t('enter_profile_name_error'));
       return;
     }
 
@@ -55,19 +57,19 @@ const HomeScreen = () => {
       const {ok, data} = await fetchApi('Profile', 'POST', profileData);
 
       if (ok && data && data.profileId) {
-        Alert.alert('Success', 'Profile created successfully.');
+        Alert.alert(t('success_title'), t('profile_creation_success'));
         setProfileName('');
         fetchProfiles();
       } else {
         console.error('Failed to create profile:', JSON.stringify(data));
         Alert.alert(
-          'Error',
-          data.error || 'Failed to create profile. Please try again.',
+          t('error_title'),
+          data.error || t('profile_creation_fail_error')
         );
       }
     } catch (error) {
       console.error('Network or parsing error:', error);
-      Alert.alert('Error', `Network or Parsing Error: ${error.message}`);
+      Alert.alert(t('error_title'), `${t('network_parsing_error')}: ${error.message}`);
     }
   };
 
@@ -81,11 +83,11 @@ const HomeScreen = () => {
         <Input
           value={profileName}
           onChangeText={setProfileName}
-          placeholder="Enter profile name"
+          placeholder={t('enter_profile_name')}  // Translated placeholder
           variant="filled"
           size="md"
         />
-        <Button onPress={handleCreateProfile}>Create Profile</Button>
+        <Button onPress={handleCreateProfile}>{t('create_profile')}</Button>  // Translated button text
       </VStack>
       <VStack space={4} alignItems="center">
         {Array(Math.ceil(profiles.length / 3))
@@ -103,7 +105,7 @@ const HomeScreen = () => {
                   style={{width: '30%'}}>
                   <Center>
                     <Avatar size="lg" name={profile.profileName} />
-                    <Text mt="2">{profile.profileName}</Text>
+                    <Text mt="2">{profile.profileName}</Text>  // Assuming profile names do not require translation
                   </Center>
                 </Pressable>
               ))}
