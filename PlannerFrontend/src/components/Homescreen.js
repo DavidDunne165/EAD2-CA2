@@ -1,13 +1,16 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {
-  View,
-  TextInput,
+  Box,
+  Input,
   Button,
   Alert,
-  FlatList,
   Text,
-  TouchableOpacity,
-} from 'react-native';
+  Center,
+  Avatar,
+  VStack,
+  HStack,
+} from 'native-base';
+import {Pressable} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {fetchApi} from '../api/api';
 
@@ -51,12 +54,10 @@ const HomeScreen = () => {
       const profileData = {profileName, userId};
       const {ok, data} = await fetchApi('Profile', 'POST', profileData);
 
-      console.log(`Response from create profile: ${JSON.stringify(data)}`); // Additional log for debugging
-
       if (ok && data && data.profileId) {
         Alert.alert('Success', 'Profile created successfully.');
-        setProfileName(''); // Clear the input field
-        fetchProfiles(); // Refresh the profiles list
+        setProfileName('');
+        fetchProfiles();
       } else {
         console.error('Failed to create profile:', JSON.stringify(data));
         Alert.alert(
@@ -75,23 +76,41 @@ const HomeScreen = () => {
   };
 
   return (
-    <View>
-      <TextInput
-        value={profileName}
-        onChangeText={setProfileName}
-        placeholder="Enter profile name"
-      />
-      <Button title="Create Profile" onPress={handleCreateProfile} />
-      <FlatList
-        data={profiles}
-        keyExtractor={item => item.profileId.toString()}
-        renderItem={({item}) => (
-          <TouchableOpacity onPress={() => navigateToProfile(item)}>
-            <Text>{item.profileName}</Text>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
+    <Box flex={1} p="4">
+      <VStack space={4} mb="4">
+        <Input
+          value={profileName}
+          onChangeText={setProfileName}
+          placeholder="Enter profile name"
+          variant="filled"
+          size="md"
+        />
+        <Button onPress={handleCreateProfile}>Create Profile</Button>
+      </VStack>
+      <VStack space={4} alignItems="center">
+        {Array(Math.ceil(profiles.length / 3))
+          .fill()
+          .map((_, row) => (
+            <HStack
+              key={row}
+              space={3}
+              alignItems="center"
+              justifyContent="space-evenly">
+              {profiles.slice(row * 3, row * 3 + 3).map((profile, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() => navigateToProfile(profile)}
+                  style={{width: '30%'}}>
+                  <Center>
+                    <Avatar size="lg" name={profile.profileName} />
+                    <Text mt="2">{profile.profileName}</Text>
+                  </Center>
+                </Pressable>
+              ))}
+            </HStack>
+          ))}
+      </VStack>
+    </Box>
   );
 };
 
