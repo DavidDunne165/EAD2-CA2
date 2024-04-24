@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using PlannerAppApi.Data; // Make sure this is using the correct namespace for your ApplicationDbContext
 
+namespace PlannerAppApi
+{
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
 {
     public ApplicationDbContext CreateDbContext(string[] args)
@@ -22,4 +24,5 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Applicatio
 
         return new ApplicationDbContext(builder.Options);
     }
+}
 }

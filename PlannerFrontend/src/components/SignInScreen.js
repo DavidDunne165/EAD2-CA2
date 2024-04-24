@@ -4,28 +4,35 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {fetchApi} from '../api/api';
 
-const SignInScreen = ({navigation}) => {
+// SignInScreen.js
+// ... (other imports)
+const SignInScreen = ({ navigation }) => {
   return (
     <Formik
-      
-      initialValues={{username: ''}}
+      initialValues={{ username: '' }}
       onSubmit={async values => {
-        // Fetch users to find if the username exists
-        const users = await fetchApi('User', 'GET');
-        // Check if the username is in the retrieved user list
-        const userExists = users.some(
-          user => user.userName === values.username,
-        );
-        if (userExists) {
-          navigation.navigate('Home');
-        } else {
-          alert('Failed to sign in');
+        try {
+          // Fetch users to find if the username exists
+          const users = await fetchApi('User', 'GET');
+          const user = users.find(
+            user => user.userName === values.username,
+          );
+          if (user) {
+            // Pass the user ID to the Home screen
+            navigation.navigate('Home', { userId: user.userId });
+          } else {
+            alert('Failed to sign in');
+          }
+        } catch (error) {
+          console.error('SignIn error:', error);
+          alert('Sign in error');
         }
       }}
       validationSchema={Yup.object().shape({
         username: Yup.string().required('Username is required'),
-      })}>
-      {({handleChange, handleBlur, handleSubmit, values}) => (
+      })}
+    >
+      {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View>
           <TextInput
             onChangeText={handleChange('username')}
