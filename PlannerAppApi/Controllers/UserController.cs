@@ -26,15 +26,17 @@ namespace PlannerAppApi.Controllers
             {
                 return NotFound();
             }
-            return await _context.User.ToListAsync();
+            // Include the Profiles in the query to load related data
+            return await _context.User.Include(u => u.Profiles).ToListAsync();
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.User.FindAsync(id);
-            if (user == null || _context.User == null)
+            // Include the Profiles in the query to load related data
+            var user = await _context.User.Include(u => u.Profiles).FirstOrDefaultAsync(u => u.UserId == id);
+            if (user == null)
             {
                 return NotFound();
             }

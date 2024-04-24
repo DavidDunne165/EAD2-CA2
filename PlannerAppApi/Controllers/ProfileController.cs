@@ -40,24 +40,22 @@ namespace PlannerAppApi.Controllers
 
         // POST: api/Profile
         [HttpPost]
+        [HttpPost]
+        [HttpPost]
+
         public async Task<ActionResult<Profile>> PostProfile(Profile profile)
         {
-            // Validate the UserId is not null and that such a user exists
-            if (profile.UserId == null || !_context.User.Any(u => u.UserId == profile.UserId))
-            {
-                return BadRequest("User ID is invalid or not provided.");
-            }
-
-            // Add the new profile
             _context.Profile.Add(profile);
             await _context.SaveChangesAsync();
 
-            // Now we need to ensure the user's Profiles list contains this new profile
-            var user = await _context.User.Include(u => u.Profiles).SingleOrDefaultAsync(u => u.UserId == profile.UserId);
-            if (user != null)
+            if (profile.UserId != null)
             {
-                user.Profiles.Add(profile);
-                await _context.SaveChangesAsync(); // Save the changes again
+                var user = await _context.User.Include(u => u.Profiles).SingleOrDefaultAsync(u => u.UserId == profile.UserId);
+                if (user != null)
+                {
+                    user.Profiles.Add(profile);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return CreatedAtAction(nameof(GetProfile), new { id = profile.ProfileId }, profile);

@@ -4,13 +4,22 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PlannerAppApi.Data; // Ensure this namespace correctly points to where your ApplicationDbContext is located.
+using System.Text.Json.Serialization; // Required namespace for ReferenceHandler
+
 var builder = WebApplication.CreateBuilder(args);
+
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.WriteIndented = true; // Optional: if you want the JSON to be indented
+});
+
 // Add DbContext using SQL Server Provider with the connection string from appsettings.json.
 // Ensure the name of the connection string matches what you have in appsettings.json.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
+
 // Register the Swagger generator, defining one or more Swagger documents.
 builder.Services.AddSwaggerGen(c =>
 {
@@ -30,7 +39,8 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner App API V1"));
-} else
+}
+else
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner App API V1"));
