@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { fetchApi } from '../api/api';
 import { Box, Button, FormControl, Input, Center, WarningOutlineIcon, Text, VStack } from 'native-base';
@@ -62,6 +62,9 @@ const EditEventScreen = () => {
       validationSchema={Yup.object().shape({
         title: Yup.string().required('Title is required'),
         description: Yup.string().required('Description is required'),
+        startTime: Yup.date().required('Start time is required'),
+        endTime: Yup.date().required('End time is required'),
+        isRecurring: Yup.boolean(),
         // Add validations for other fields as necessary
       })}
       onSubmit={(values) => saveEvent(values)}
@@ -92,6 +95,42 @@ const EditEventScreen = () => {
                 {errors.description}
               </FormControl.ErrorMessage>
             </FormControl>
+
+            <FormControl isInvalid={touched.startTime && errors.startTime}>
+                <FormControl.Label>Start Time</FormControl.Label>
+                <Input
+                    onChangeText={handleChange('startTime')}
+                    onBlur={handleBlur('startTime')}
+                    value={values.startTime}
+                />
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                    {errors.startTime}
+                </FormControl.ErrorMessage>
+            </FormControl>
+
+            <FormControl isInvalid={touched.endTime && errors.endTime}>
+                <FormControl.Label>End Time</FormControl.Label>
+                <Input
+                    onChangeText={handleChange('endTime')}
+                    onBlur={handleBlur('endTime')}
+                    value={values.endTime}
+                />
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>  
+                    {errors.endTime}
+                </FormControl.ErrorMessage>
+            </FormControl>
+
+            <FormControl isInvalid={touched.isRecurring && errors.isRecurring}>
+                <FormControl.Label>Recurring</FormControl.Label>
+                <Input
+                    onChangeText={handleChange('isRecurring')}
+                    onBlur={handleBlur('isRecurring')}
+                    value={values.isRecurring}
+                />
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                    {errors.isRecurring}
+                </FormControl.ErrorMessage>
+            </FormControl>            
 
             {/* Repeat FormControl blocks for startTime, endTime, and isRecurring */}
 

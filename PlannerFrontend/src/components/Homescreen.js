@@ -3,14 +3,13 @@ import {
   Box,
   Input,
   Button,
-  Alert,
   Text,
   Center,
   Avatar,
   VStack,
   HStack,
 } from 'native-base';
-import {Pressable} from 'react-native';
+import {Pressable, Alert} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {fetchApi} from '../api/api';
 
