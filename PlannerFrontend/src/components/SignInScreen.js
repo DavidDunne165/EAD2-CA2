@@ -1,22 +1,25 @@
 // SignInScreen.js
 import React from 'react';
-import { View, TextInput, Button, Alert } from 'react-native';
-import { Formik } from 'formik';
+import {View, TextInput, Button, Alert} from 'react-native';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { fetchApi } from '../api/api';
+import {fetchApi} from '../api/api';
 
-const SignInScreen = ({ navigation }) => {
+const SignInScreen = ({navigation}) => {
   return (
     <Formik
-      initialValues={{ username: '' }}
-      onSubmit={async (values) => {
+      initialValues={{username: ''}}
+      onSubmit={async values => {
         try {
-          const { ok, data, error } = await fetchApi('User', 'GET');
+          const {ok, data, error} = await fetchApi('User', 'GET');
           if (ok) {
-            // Ensure data is an array before using .find
-            const user = Array.isArray(data) && data.find((u) => u.userName === values.username);
+            // Since data is wrapped in an object with a $values key, adjust the find method accordingly
+            const users = data.$values;
+            const user = users.find(
+              u => u.userName.toLowerCase() === values.username.toLowerCase(),
+            );
             if (user) {
-              navigation.navigate('Home', { userId: user.userId });
+              navigation.navigate('Home', {userId: user.userId});
             } else {
               Alert.alert('Failed to sign in', 'User not found.');
             }
@@ -31,9 +34,8 @@ const SignInScreen = ({ navigation }) => {
       }}
       validationSchema={Yup.object().shape({
         username: Yup.string().required('Username is required'),
-      })}
-    >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      })}>
+      {({handleChange, handleBlur, handleSubmit, values}) => (
         <View>
           <TextInput
             onChangeText={handleChange('username')}

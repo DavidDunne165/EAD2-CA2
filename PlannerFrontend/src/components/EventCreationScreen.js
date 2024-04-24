@@ -1,21 +1,26 @@
 import {fetchApi} from '../api/api';
 import React, {useState} from 'react';
 import {View, TextInput, Button, Text} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 
 const EventCreationScreen = ({navigation}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+  const route = useRoute();
+  const {profileId} = route.params;
 
   const handleCreateEvent = async () => {
     try {
+      // Add 'profileId' to the eventData object when making the POST request
       const eventData = {
-        title: title,
-        description: description,
+        title,
+        description,
         startTime: new Date(startTime).toISOString(),
         endTime: new Date(endTime).toISOString(),
-        isRecurring: false, // You can modify this as needed or make it dynamic
+        isRecurring: false,
+        profileId, // Assuming your API needs this to associate the event with the profile
       };
       const data = await fetchApi('Event', 'POST', eventData);
       if (data) {
