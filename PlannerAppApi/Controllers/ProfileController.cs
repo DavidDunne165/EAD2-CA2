@@ -21,14 +21,18 @@ namespace PlannerAppApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Profile>>> GetProfiles()
         {
-            return await _context.Profile.ToListAsync();
+            return await _context.Profile
+                                 .Include(p => p.Events)
+                                 .ToListAsync();
         }
 
         // GET: api/Profile/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Profile>> GetProfile(int id)
         {
-            var profile = await _context.Profile.FindAsync(id);
+            var profile = await _context.Profile
+                                        .Include(p => p.Events)
+                                        .FirstOrDefaultAsync(p => p.ProfileId == id);
 
             if (profile == null)
             {
@@ -40,9 +44,6 @@ namespace PlannerAppApi.Controllers
 
         // POST: api/Profile
         [HttpPost]
-        [HttpPost]
-        [HttpPost]
-
         public async Task<ActionResult<Profile>> PostProfile(Profile profile)
         {
             _context.Profile.Add(profile);
@@ -60,7 +61,6 @@ namespace PlannerAppApi.Controllers
 
             return CreatedAtAction(nameof(GetProfile), new { id = profile.ProfileId }, profile);
         }
-
 
         // PUT: api/Profile/5
         [HttpPut("{id}")]
