@@ -61,11 +61,35 @@ const ProfileDetailScreen = () => {
     setDetailModalVisible(true);
   };
 
-  const deleteEvent = async eventId => {
-    // Here you would call the API to delete the event and then refetch or update the state locally
-    Alert.alert('Delete Event', 'Event deleted successfully.');
-    setDetailModalVisible(false);
+  const deleteEvent = async (eventId) => {
+    // Ask the user for confirmation before deleting
+    Alert.alert('Delete Event', 'Are you sure you want to delete this event?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'OK',
+        onPress: async () => {
+          try {
+            const { ok, error } = await fetchApi(`Event/${eventId}`, 'DELETE');
+            if (ok) {
+              // Close the detail modal first
+              setDetailModalVisible(false);
+              // Wait for the modal to close, then fetch the updated events
+              setTimeout(() => {
+                fetchEvents();
+              }, 300); // You can adjust the timeout duration if needed
+            } else {
+              Alert.alert('Error', error);
+            }
+          } catch (error) {
+            console.error('Delete error:', error);
+            Alert.alert('Error', `Could not delete the event: ${error.message}`);
+          }
+        },
+      },
+    ]);
   };
+  
+  
 
   const editEvent = (eventId) => {
     // Navigate to EditEvent screen with eventId as a parameter
@@ -125,7 +149,7 @@ const ProfileDetailScreen = () => {
               <Text>Recurring: {formatRecurring(selectedEvent?.isRecurring)}</Text>
               <Button onPress={() => editEvent(selectedEvent.eventId)}>Edit</Button>
               <Button
-                onPress={() => deleteEvent(selectedEvent?.id)}
+                onPress={() => deleteEvent(selectedEvent.eventId)}
                 colorScheme="red">
                 Delete
               </Button>
