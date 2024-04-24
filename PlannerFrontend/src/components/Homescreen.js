@@ -18,18 +18,22 @@ const HomeScreen = () => {
       return;
     }
     try {
-      const response = await fetchApi('Profile', 'POST', {
-        UserId: userId, // Use the userId from the sign-in
-        ProfileName: profileName,
+      const {ok, data, error} = await fetchApi('Profile', 'POST', {
+        profileName: profileName,
+        userId: userId, // Update this line to send userId directly
       });
-      if (response.ProfileId) {
-        // If the profile is created successfully, navigate or update state as needed
-        Alert.alert('Success', 'Profile created successfully.');
+
+      if (ok) {
+        if (data.ProfileId) {
+          Alert.alert('Success', 'Profile created successfully.');
+        } else {
+          Alert.alert('Error', 'Failed to create profile.');
+        }
       } else {
-        Alert.alert('Error', 'Failed to create profile.');
+        Alert.alert('Error', error);
       }
     } catch (error) {
-      Alert.alert('Error', error.message);
+      Alert.alert('Error', `Network or Parsing Error: ${error.message}`);
     }
   };
 

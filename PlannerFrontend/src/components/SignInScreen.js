@@ -1,31 +1,32 @@
-import React from 'react';
-import {View, TextInput, Button} from 'react-native';
-import {Formik} from 'formik';
-import * as Yup from 'yup';
-import {fetchApi} from '../api/api';
-
 // SignInScreen.js
-// ... (other imports)
+import React from 'react';
+import { View, TextInput, Button, Alert } from 'react-native';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { fetchApi } from '../api/api';
+
 const SignInScreen = ({ navigation }) => {
   return (
     <Formik
       initialValues={{ username: '' }}
-      onSubmit={async values => {
+      onSubmit={async (values) => {
         try {
-          // Fetch users to find if the username exists
-          const users = await fetchApi('User', 'GET');
-          const user = users.find(
-            user => user.userName === values.username,
-          );
-          if (user) {
-            // Pass the user ID to the Home screen
-            navigation.navigate('Home', { userId: user.userId });
+          const { ok, data, error } = await fetchApi('User', 'GET');
+          if (ok) {
+            // Ensure data is an array before using .find
+            const user = Array.isArray(data) && data.find((u) => u.userName === values.username);
+            if (user) {
+              navigation.navigate('Home', { userId: user.userId });
+            } else {
+              Alert.alert('Failed to sign in', 'User not found.');
+            }
           } else {
-            alert('Failed to sign in');
+            // Handle the case where the fetch did not succeed
+            Alert.alert('Error', error);
           }
         } catch (error) {
           console.error('SignIn error:', error);
-          alert('Sign in error');
+          Alert.alert('Sign in error', error.message);
         }
       }}
       validationSchema={Yup.object().shape({
