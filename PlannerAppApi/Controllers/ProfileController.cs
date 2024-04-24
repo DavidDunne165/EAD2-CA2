@@ -42,10 +42,22 @@ namespace PlannerAppApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Profile>> PostProfile(Profile profile)
         {
+            // Check if the UserId is provided and if a user with the given UserId exists
+            if (profile.UserId == null || !_context.User.Any(u => u.UserId == profile.UserId))
+            {
+                return BadRequest("No user found with the provided UserId.");
+            }
+
+            // Add the profile to the context
             _context.Profile.Add(profile);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProfile", new { id = profile.ProfileId }, profile);
+            // Fetch the profile with related user data to include in the response
+            var createdProfile = await _context.Profile
+                .Include(p => p.User)
+                .FirstOrDefaultAsync(p => p.ProfileId == profile.ProfileId);
+
+            return CreatedAtAction("GetProfile", new { id = profile.ProfileId }, createdProfile);
         }
 
         // PUT: api/Profile/5
