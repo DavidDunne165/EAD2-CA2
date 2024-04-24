@@ -1,37 +1,40 @@
 import React, {useState, useEffect} from 'react';
 import {View, Button, Alert, FlatList, Text} from 'react-native';
-import {useRoute, useNavigation} from '@react-navigation/native';
+import {
+  useRoute,
+  useNavigation,
+  useFocusEffect,
+} from '@react-navigation/native';
 import {fetchApi} from '../api/api';
 
 const ProfileDetailScreen = () => {
   const [events, setEvents] = useState([]);
   const route = useRoute();
   const navigation = useNavigation();
-
   const {profile} = route.params;
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const {ok, data, error} = await fetchApi(
-          `Profile/${profile.profileId}`,
-          'GET',
-        );
-        console.log('API response:', JSON.stringify(data, null, 2)); // Debugging the API response
-        if (ok) {
-          console.log('Events:', data.events?.$values); // Debugging the events data
-          setEvents(data.events?.$values || []);
-        } else {
-          Alert.alert('Error', error || 'Unable to fetch events');
-        }
-      } catch (error) {
-        console.error('Fetch error:', error);
-        Alert.alert('Error', `Network or Parsing Error: ${error.message}`);
+  const fetchEvents = async () => {
+    try {
+      const {ok, data, error} = await fetchApi(
+        `Profile/${profile.profileId}`,
+        'GET',
+      );
+      if (ok) {
+        setEvents(data.events?.$values || []);
+      } else {
+        Alert.alert('Error', error || 'Unable to fetch events');
       }
-    };
+    } catch (error) {
+      Alert.alert('Error', `Network or Parsing Error: ${error.message}`);
+    }
+  };
 
-    fetchEvents();
-  }, [profile.profileId]);
+  // Using useFocusEffect to refetch events every time the screen is focused
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchEvents();
+    }, [profile.profileId]),
+  );
 
   const navigateToEventCreation = () => {
     navigation.navigate('EventCreation', {profileId: profile.profileId});
