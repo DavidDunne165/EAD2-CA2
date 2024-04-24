@@ -16,6 +16,10 @@ const ProfileDetailScreen = () => {
   const navigation = useNavigation();
   const {profile} = route.params;
 
+  const formatRecurring = (isRecurring) => {
+    return isRecurring ? 'Yes' : 'No';
+  };
+
   useEffect(() => {
     fetchEvents(); // Call this on component mount
   }, []);
@@ -63,9 +67,9 @@ const ProfileDetailScreen = () => {
     setDetailModalVisible(false);
   };
 
-  const editEvent = event => {
-    // Here you would navigate to an event edit screen or open an edit modal
-    navigation.navigate('EditEvent', {event});
+  const editEvent = (eventId) => {
+    // Navigate to EditEvent screen with eventId as a parameter
+    navigation.navigate('EditEvent', { eventId });
   };
 
   const screenWidth = Dimensions.get('window').width; // Get the width of the screen
@@ -101,7 +105,7 @@ const ProfileDetailScreen = () => {
                   {event.title}
                 </Button>
               ))}
-              <Button onPress={() => setModalVisible(false)}>Close</Button>
+              <Button onPress={() => setModalVisible(false)} colorScheme="coolGray">Close</Button>
             </VStack>
           </Center>
         </Modal>
@@ -116,13 +120,17 @@ const ProfileDetailScreen = () => {
                 {selectedEvent?.title}
               </Text>
               <Text>{selectedEvent?.description}</Text>
-              <Button onPress={() => editEvent(selectedEvent)}>Edit</Button>
+              <Text>Start Time: {selectedEvent?.startTime}</Text>
+              <Text>End Time: {selectedEvent?.endTime}</Text>
+              <Text>Recurring: {formatRecurring(selectedEvent?.isRecurring)}</Text>
+              <Button onPress={() => editEvent(selectedEvent.eventId)}>Edit</Button>
               <Button
                 onPress={() => deleteEvent(selectedEvent?.id)}
                 colorScheme="red">
                 Delete
               </Button>
-              <Button onPress={() => setDetailModalVisible(false)}>
+              <Button onPress={() => setDetailModalVisible(false)}
+                colorScheme="coolGray">
                 Close
               </Button>
             </VStack>

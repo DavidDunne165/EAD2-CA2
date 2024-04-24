@@ -5,6 +5,7 @@ import SignUpScreen from './SignUpScreen';
 import HomeScreen from './Homescreen';
 import EventCreationScreen from './EventCreationScreen';
 import ProfileDetailScreen from './ProfileDetailScreen';
+import EditEventScreen from './EditEventScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function AppNavigator() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ProfileDetail" component={ProfileDetailScreen} />
       <Stack.Screen name="EventCreation" component={EventCreationScreen} />
+      <Stack.Screen name="EditEvent" component={EditEventScreen} />
     </Stack.Navigator>
   );
 }

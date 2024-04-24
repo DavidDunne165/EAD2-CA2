@@ -1,27 +1,32 @@
 // src/api/api.js
 const API_URL = 'https://ead2plannerapp.azurewebsites.net';
 
-export const fetchApi = async (endpoint, method, body) => {
-  const response = await fetch(`${API_URL}/${endpoint}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body)
-  });
 
-  // Check if the HTTP response status code is successful
-  if (response.ok) {
-    try {
-      // Try parsing the response as JSON
-      const jsonResponse = await response.json();
-      return { ok: true, data: jsonResponse };
-    } catch (error) {
-      // If JSON parsing fails, return the error
-      return { ok: false, error: "Failed to parse JSON response." };
+export const fetchApi = async (endpoint, method, body = null) => {
+  try {
+    const response = await fetch(`https://ead2plannerapp.azurewebsites.net/${endpoint}`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+        // Add any other headers your API needs
+      },
+      body: body ? JSON.stringify(body) : null,
+    });
+
+    if (response.ok) {
+      // Try to parse the JSON if there is a body, otherwise return an empty object
+      const data = await response.text();
+      const jsonData = data ? JSON.parse(data) : {};
+      return { ok: true, data: jsonData };
+    } else {
+      // If the server responds with an error, handle it here
+      const errorData = await response.text();
+      const jsonError = errorData ? JSON.parse(errorData) : {};
+      return { ok: false, error: jsonError.message || 'An error occurred' };
     }
-  } else {
-    // If the response status is not successful, return the status and statusText
-    return { ok: false, error: `HTTP Error: ${response.status} - ${response.statusText}` };
+  } catch (error) {
+    // Catch any network or parsing errors
+    return { ok: false, error: error.message };
   }
-};
+}
+
