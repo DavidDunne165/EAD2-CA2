@@ -26,14 +26,16 @@ namespace PlannerAppApi.Controllers
             {
                 return NotFound();
             }
-            return await _context.Event.ToListAsync();
+            // Include the Profile in the query to load related data
+            return await _context.Event.Include(e => e.Profile).ToListAsync();
         }
 
         // GET: api/Event/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEvent(int id)
         {
-            var eventItem = await _context.Event.FindAsync(id);
+            // Include the Profile in the query to load related data
+            var eventItem = await _context.Event.Include(e => e.Profile).FirstOrDefaultAsync(e => e.EventId == id);
             if (eventItem == null || _context.Event == null)
             {
                 return NotFound();
@@ -52,7 +54,9 @@ namespace PlannerAppApi.Controllers
             _context.Event.Add(eventItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEvent), new { id = eventItem.EventId }, eventItem);
+            // Include the Profile in the query to load related data when returning the created event
+            var newEvent = await _context.Event.Include(e => e.Profile).FirstOrDefaultAsync(e => e.EventId == eventItem.EventId);
+            return CreatedAtAction(nameof(GetEvent), new { id = newEvent.EventId }, newEvent);
         }
 
         // PUT: api/Event/5
